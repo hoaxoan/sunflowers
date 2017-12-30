@@ -1,0 +1,62 @@
+{
+  "Common": {
+    "Name": "Tên",
+    "Email": "Email",
+    "Password": "Mật khẩu",
+    "ComfirmPassword": "Xác nhận mật khẩu",
+    "Phone": "Điện thoại",
+    "Address": "Địa chỉ",
+    "Addressline": "Địa chỉ (tầng, số nhà, đường)",
+    "Ward": "Phường/Xã",
+    "District": "Quận/Huyện",
+    "State": "Tỉnh/Thành",
+    "ShippingAddress": "Địa chỉ giao hàng",
+    "BillingAddress": "Địa chỉ thanh toán",
+    "BtnView": "Xem",
+    "BtnEdit": "Chỉnh Sửa",
+    "BtnSave": "Lưu",
+    "OrderLabel": "Đơn Hàng",
+    "AddressLabel": "Địa Chỉ",
+    "ProductLabel": "Sản Phẩm",
+    "Quantity": "Số lượng",
+    "Prices": "Giá",
+    "Total": "Tổng",
+    "TotalAmount": "Tổng tiền",
+    "Loading": "Đang tải ...",
+    "Saving": "Đang lưu ...",
+    "Success": "Lưu thành công.",
+    "Fail": "Lưu thất bại."
+  },
+  "Menu": {
+    "Dashboard": "Dashboard",
+    "Order": "Đơn Hàng",
+    "Map": "Bản Đồ",
+    "Login": "Đăng Nhập",
+    "SignUp": "Đăng Kí"
+  },
+  "Login": {
+    "Login": "Đăng nhập",
+    "Or": "Hoặc",
+    "HaveAccount": "Không có tài khoản?",
+    "SignUpHere": "Đăng kí ngay"
+  },
+  "SignUp": {
+    "SignUp": "Đăng Kí"
+  },
+  "Order": {
+    "Order": "Đơn hàng",
+    "OrderNo": "Số ĐH",
+    "OrderStatus": "Trạng thái",
+    "PaymentStatus": "Thanh toán",
+    "MarkAsPaid": "Đã thanh toán",
+    "ManageOrder": "Quản Lý Đơn Hàng"
+  },
+  "Dashboard": {
+    "Dashboard": "Dashboard",
+    "OrderStatus": "Trạng thái ĐH",
+    "OrderStatusInDay": "Trạng Thái ĐH Trong Ngày",
+    "PendingDay": "ĐH Chưa Giao",
+    "OrderInDay": "Tổng ĐH",
+    "OrderNotShip": "Tổng ĐH Chưa Giao"
+  }
+}

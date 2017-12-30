@@ -1,0 +1,71 @@
+.theme-dark {
+  background-color: #303030;
+  h1, h2, h3,
+  h4, h5, h6,
+  p, .toolbar-title,
+  .bar-button-default {
+    color: white;
+  }
+  .toolbar-background{
+    transition: all 1.1s ease;
+    background-color: #212121;
+  }
+  .item-note,
+  .swiper-pagination-bullet {
+    transition: all 1.1s ease;
+  }
+
+  ion-content {
+    transition: all .5s ease;
+    background-color: #303030 !important;
+    background: #303030 !important;
+    color: white !important;
+  }
+
+  .item {
+    transition: none !important;
+    background-color: #100815;
+    color: white;
+  }
+
+  ion-card {
+    background: rgba(255, 255, 255, 0.12) !important;
+  }
+
+  ion-avatar img, .footer-btn {
+      background: $darkside-red;
+  }
+
+  .toggle-checked .toggle-icon {
+    transition: all 1.1s ease;
+    background-color: #717377;
+  }
+
+  .toggle-checked .toggle-inner {
+      background-color: $darkside-red !important;
+  }
+
+  ion-menu {
+    transition: all .5s ease;
+    // background: #303030 !important;
+    max-width: 275px !important;
+
+    ion-backdrop {
+        display: none !important;
+    }
+  }
+    
+  ion-menu ion-icon{
+    // color:$darkside-red;
+  }
+  .active-menu-item ion-icon {
+    color:$darkside-red;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px $darkside-red, 0 0 35px $darkside-red, 0 0 40px $darkside-red, 0 0 50px $darkside-red, 0 0 75px $darkside-red;
+  }
+
+  overlaying-view .toolbar-background,
+  overlaying-view .header-top {
+      background-color: $darkside-red !important;
+  }
+}
+

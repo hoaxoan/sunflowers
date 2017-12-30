@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1003499785313",
+    "firebase_url": "https://omnifocus3.firebaseio.com",
+    "project_id": "omnifocus3",
+    "storage_bucket": "omnifocus3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1003499785313:android:cdf9d8dcbb9a5196",
+        "android_client_info": {
+          "package_name": "com.sunflowers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1003499785313-7gqas01o4nmg3h2bc68vkda09bnd520s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC55KISIlmuQaJspAgEkhmAIjCePIgZyvE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

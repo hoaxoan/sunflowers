@@ -1,0 +1,50 @@
+<ion-header no-border>
+  <ion-navbar transparent>
+  </ion-navbar>
+</ion-header>
+<ion-content fullscreen padding class="primary-font">
+  <img class="logo" src="assets/img/logo.png" />
+  <form padding [formGroup]="signupForm" (submit)="signup()" novalidate>
+    <ion-item>
+      <ion-input [(ngModel)]="name"
+                 formControlName="name"
+                 type="text"
+                 placeholder="{{'Common.Name' | translate }}"
+                 clearInput clearOnEdit="false">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-input [(ngModel)]="phone"
+                   formControlName="phone"
+                   type="text"
+                   placeholder="{{'Common.Phone' | translate }}"
+                   clearInput clearOnEdit="false">
+        </ion-input>
+      </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="email"
+                 formControlName="email"
+                 type="text"
+                 placeholder="{{'Common.Email' | translate }}"
+                 clearInput clearOnEdit="false">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="password"
+                 formControlName="password"
+                 type="password"
+                 placeholder="{{'Common.Password' | translate }}"
+                 clearInput clearOnEdit="false">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="passwordConfirm"
+                 formControlName="passwordConfirm"
+                 type="password"
+                 placeholder="{{'Common.ComfirmPassword' | translate }}"
+                 clearInput clearOnEdit="false">
+      </ion-input>
+    </ion-item>
+    <button ion-button block outline color="light" class="login-button">{{'SignUp.SignUp' | translate }}</button>
+  </form>
+</ion-content>

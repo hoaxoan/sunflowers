@@ -1,0 +1,32 @@
+page-menu {
+
+    ion-menu .scroll-content {
+        overflow: hidden;
+    }
+
+    #custom-overlay {
+        background-size: cover;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1000000;
+        width: 100%;
+        background-color:transparent;
+    }
+
+    ion-menu button.item.item-block {
+        height: 8rem;
+    }
+
+    ion-avatar img {
+        display: block;
+        margin-top: 12px !important;
+        margin-bottom: 12px !important;
+        margin: 0 auto;
+        border-radius: 50%;
+        width: 120px;
+        padding: 5px;
+    }
+}

@@ -1,0 +1,62 @@
+{
+  "Common": {
+    "Name": "Name",
+    "Email": "Email",
+    "Password": "Password",
+    "ComfirmPassword": "Comfirm Password",
+    "Phone": "Phone",
+    "Address": "Full Address",
+    "Addressline": "Addressline",
+    "Ward": "Ward",
+    "District": "District",
+    "State": "State/province",
+    "ShippingAddress": "Shipping Address",
+    "BillingAddress": " Billing Address",
+    "BtnView": "View",
+    "BtnEdit": "Edit",
+    "BtnSave": "Save",
+    "OrderLabel": "Order",
+    "AddressLabel": "Address",
+    "ProductLabel": "Products",
+    "Quantity": "Quantity",
+    "Prices": "Prices",
+    "Total": "Total",
+    "TotalAmount": "Total Amount",
+    "Loading": "Loading ...",
+    "Saving": "Saving ...",
+    "Success": "Save success.",
+    "Fail": "Save fail."
+  },
+  "Menu": {
+    "Dashboard": "Dashboard",
+    "Order": "Order",
+    "Map": "Map",
+    "Login": "Login",
+    "SignUp": "Sign Up"
+  },
+  "Login": {
+    "Login": "Login",
+    "Or": "Or",
+    "HaveAccount": "Don't have an account?",
+    "SignUpHere": "Sign up here"
+  },
+  "SignUp": {
+    "SignUp": "Sign Up"
+  },
+  "Order": {
+    "Order": "Order",
+    "OrderNo": "Order No",    
+    "OrderStatus": "Order Status",
+    "PaymentStatus": "Payment Status",
+    "MarkAsPaid": "Mark as Paid",
+    "ManageOrder": "Manage Order"
+  },
+  "Dashboard": {
+    "Dashboard": "Dashboard",
+    "OrderStatus": "Order Status",
+    "OrderStatusInDay": "Order Status In Day",
+    "PendingDay": "Pending Day",
+    "OrderInDay": "Order In Day",
+    "OrderNotShip": "Order Not Ship"
+  }
+}

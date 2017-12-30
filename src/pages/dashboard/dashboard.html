@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{ 'Dashboard.Dashboard' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="card-background-page">
+    <ion-card-header style="text-align: center;">
+      {{ 'Dashboard.OrderStatusInDay' | translate }}
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #barCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card style="cursor: pointer;" (click)="viewOrder(1)">
+          <ion-card-content>
+            <div class="card-title" style="color: #33cd5f;">{{ orderPendingCount }}</div>
+          </ion-card-content>
+          <ion-card-header class="custom-card-header">
+            <div class="card-subtitle">{{ 'Dashboard.PendingDay' | translate }}</div>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card style="cursor: pointer;" (click)="viewOrder(2)">
+          <ion-card-content>
+            <div class="card-title" style="color: #33cd5f;">{{ orderDayCount }}</div>
+          </ion-card-content>
+          <ion-card-header class="custom-card-header">
+            <div class="card-subtitle">{{ 'Dashboard.OrderInDay' | translate }}</div>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card style="cursor: pointer;" (click)="viewOrder(3)">
+          <ion-card-content>
+            <div class="card-title" style="color: #33cd5f;">{{ orderTotalCount }}</div>
+          </ion-card-content>
+          <ion-card-header class="custom-card-header">
+            <div class="card-subtitle">{{ 'Dashboard.OrderNotShip' | translate }}</div>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

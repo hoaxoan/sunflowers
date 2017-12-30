@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{ 'Order.OrderNo' | translate }} #{{ order.id }}</ion-title>
+    <ion-buttons end>
+      <button ion-button clear (click)="saveOrder()">{{ 'Common.BtnSave' | translate }}</button>
+    </ion-buttons>
+
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-row>
+        <ion-col col-6>{{ 'Order.OrderNo' | translate }}
+          <a>#{{ order.id }}</a>
+        </ion-col>
+        <ion-col col-6>
+          <ion-icon name='call'>
+            <a *ngIf="order.shipping_address != null">{{order.shipping_address.phone_number}}</a>
+            <a *ngIf="order.shipping_address == null && order.billing_address != null">{{order.billing_address.phone_number}}</a>
+          </ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>{{ 'Order.OrderStatus' | translate }}:</ion-label>
+      <ion-select [(ngModel)]="order.order_status_id" interface="action-sheet">
+        <ion-option *ngFor="let status of orderStatus" [value]="status.id">{{status.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>{{ 'Order.PaymentStatus' | translate }}:</ion-label>
+      <ion-badge item-end style="margin-top: 0px; margin-bottom: 0px;">
+          {{ order.payment_status_name }}
+        </ion-badge>
+    </ion-item>
+    <ion-item *ngIf="!paymentSelected">
+        <ion-label>{{ 'Order.MarkAsPaid' | translate }}</ion-label>
+        <ion-toggle [(ngModel)]="paymentSelected"></ion-toggle>
+    </ion-item>
+
+  </ion-list>
+</ion-content>
