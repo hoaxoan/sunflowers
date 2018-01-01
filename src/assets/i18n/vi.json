@@ -49,14 +49,15 @@
     "OrderStatus": "Trạng thái",
     "PaymentStatus": "Thanh toán",
     "MarkAsPaid": "Đã thanh toán",
-    "ManageOrder": "Quản Lý Đơn Hàng"
+    "ManageOrder": "Quản Lý Đơn Hàng",
+    "ShippedDate": "Ngày giao hàng"
   },
   "Dashboard": {
     "Dashboard": "Dashboard",
     "OrderStatus": "Trạng thái ĐH",
     "OrderStatusInDay": "Trạng Thái ĐH Trong Ngày",
-    "PendingDay": "ĐH Chưa Giao",
-    "OrderInDay": "Tổng ĐH",
+    "PendingDay": "ĐH Chưa Giao TN",
+    "OrderInDay": "Tổng ĐH TN",
     "OrderNotShip": "Tổng ĐH Chưa Giao"
   }
 }

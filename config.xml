@@ -90,4 +90,5 @@
     <plugin name="cordova-plugin-fcm" spec="^2.1.2">
         <variable name="SENDER_ID" value="1003499785313" />
     </plugin>
+    <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
 </widget>

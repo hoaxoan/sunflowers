@@ -25,6 +25,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { Flashlight } from '@ionic-native/flashlight';
 import { IonicStorageModule } from '@ionic/storage';
 import { FCM } from '@ionic-native/fcm';
+import { CallNumber } from '@ionic-native/call-number';
 
 // Custom providers
 import { AudioService } from '../providers/audio-service/audio-service';
@@ -103,6 +104,7 @@ export const firebaseConfig = {
     Geolocation,
     Network,
     FCM,
+    CallNumber,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
 
     AudioService,

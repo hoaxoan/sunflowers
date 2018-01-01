@@ -10,8 +10,8 @@ import { concat } from 'rxjs/observable/concat';
 
 @Injectable()
 export class DefApiProvider {
-  private baseUrl = "http://localhost:8080/";
-  //private baseUrl = "http://localhost:15536/";
+  //private baseUrl = "http://localhost:8080/";
+  private baseUrl = "http://localhost:15536/";
 
   constructor(public http: Http, 
     public cache: CacheService,

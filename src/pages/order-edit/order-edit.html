@@ -41,7 +41,7 @@
           {{ order.payment_status_name }}
         </ion-badge>
     </ion-item>
-    <ion-item *ngIf="!paymentSelected">
+    <ion-item>
         <ion-label>{{ 'Order.MarkAsPaid' | translate }}</ion-label>
         <ion-toggle [(ngModel)]="paymentSelected"></ion-toggle>
     </ion-item>

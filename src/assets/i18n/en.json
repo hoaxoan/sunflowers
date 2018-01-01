@@ -49,7 +49,8 @@
     "OrderStatus": "Order Status",
     "PaymentStatus": "Payment Status",
     "MarkAsPaid": "Mark as Paid",
-    "ManageOrder": "Manage Order"
+    "ManageOrder": "Manage Order",
+    "ShippedDate": "ShippedDate"
   },
   "Dashboard": {
     "Dashboard": "Dashboard",

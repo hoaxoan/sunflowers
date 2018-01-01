@@ -1,5 +1,6 @@
 import { DefApiProvider } from '../../providers/api/def-api';
 import { Component, ViewChild, Renderer } from '@angular/core';
+import { CallNumber } from '@ionic-native/call-number';
 
 import {
   Content,
@@ -33,6 +34,7 @@ export class OrderDetailPage {
     public loadingCtrl: LoadingController,
     public renderer: Renderer,
     public modalCtrl: ModalController,
+    public callNumber: CallNumber,
     public defApi: DefApiProvider,
     private platform: Platform,
     private app: App) {
@@ -85,4 +87,20 @@ export class OrderDetailPage {
     }
 
   }
+
+  openDialer(order) {
+    let phoneNumber: string = null;
+
+    if (order.shipping_address != null) {
+      let phoneNumber = order.shipping_address.phone_number;
+    } else if (order.billing_address != null) {
+      let phoneNumber = order.billing_address.phone_number;
+    }
+    if (phoneNumber == null || phoneNumber == "") {
+      return;
+    }
+    this.callNumber.callNumber(phoneNumber, true).then(response => {
+    });
+  }
+
 }

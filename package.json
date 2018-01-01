@@ -20,6 +20,7 @@
     "@angular/http": "5.0.0",
     "@angular/platform-browser": "5.0.0",
     "@angular/platform-browser-dynamic": "5.0.0",
+    "@ionic-native/call-number": "^4.5.2",
     "@ionic-native/core": "^4.3.1",
     "@ionic-native/device": "^4.5.2",
     "@ionic-native/facebook": "^4.5.2",
@@ -38,6 +39,7 @@
     "@ngx-translate/http-loader": "^2.0.0",
     "@types/google-maps": "3.2.0",
     "angularfire2": "^5.0.0-rc.0",
+    "call-number": "^1.0.1",
     "chart.js": "^2.7.1",
     "cordova-android": "6.2.3",
     "cordova-ios": "^4.5.2",
@@ -90,7 +92,8 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-fcm": {
         "SENDER_ID": "1003499785313"
-      }
+      },
+      "mx.ferreyra.callnumber": {}
     }
   }
 }

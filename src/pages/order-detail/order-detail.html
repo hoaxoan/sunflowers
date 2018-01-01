@@ -36,7 +36,7 @@
             <a>#{{ order.id }}</a>
           </ion-col>
           <ion-col col-6>
-            <ion-icon name='call' color="primary">
+            <ion-icon name='call' color="primary" (click)="openDialer(order)">
               <a *ngIf="shippingAddress != null">{{shippingAddress.phone_number}}</a>
               <a *ngIf="shippingAddress == null && billingAddress != null">{{billingAddress.phone_number}}</a>
             </ion-icon>
@@ -58,8 +58,17 @@
               {{ order.payment_status_name }}
             </ion-badge>
           </ion-col>
-          <ion-col col-6>{{ 'Common.TotalAmount' | translate }}:: {{ order.order_total }} VND</ion-col>
+          <ion-col col-6>{{ 'Common.TotalAmount' | translate }}:: {{ order.order_total | number }} VND</ion-col>
         </ion-row>
+
+        <ion-row>
+          <ion-col>
+              {{ 'Order.ShippedDate' | translate }}:
+              <a style="color: #ff0000;"> {{ order.shipped_date_utc | date:'dd-MM-yyyy HH:mm a' }}</a>
+              <!-- <a style="color: #ff0000;"> {{ order.shipped_date_utc | date:'dd-MM-yyyy HH:mm a z':'+0900' }}</a> -->
+          </ion-col>
+        </ion-row>
+        
       </ion-item>
     </ion-list>
 
@@ -83,12 +92,8 @@
           <a>{{ shippingAddress.phone_number }}</a>
         </ion-item>
         <ion-item>
-          {{ 'Common.Address' | translate }}:
-          <a>{{ shippingAddress.full_address }}</a>
-        </ion-item>
-        <ion-item>
-          {{ 'Common.AddressLine' | translate }}:
-          <span>{{ shippingAddress.address1 }}</span>
+          {{ 'Common.Addressline' | translate }}:
+          <div style="padding-top: 8px;">{{ shippingAddress.address1 }}</div>
         </ion-item>
         <ion-item>
           {{ 'Common.Ward' | translate }}:
@@ -122,12 +127,8 @@
           <a>{{ billingAddress.phone_number }}</a>
         </ion-item>
         <ion-item>
-          {{ 'Common.Address' | translate }}:
-          <a>{{ billingAddress.full_address }}</a>
-        </ion-item>
-        <ion-item>
-          {{ 'Common.AddressLine' | translate }}:
-          <span>{{ billingAddress.address1 }}</span>
+          {{ 'Common.Addressline' | translate }}:
+          <div style="padding-top: 8px;">{{ billingAddress.address1 }}</div>
         </ion-item>
         <ion-item>
           {{ 'Common.Ward' | translate }}:
@@ -152,9 +153,9 @@
           <img *ngIf="item.product.images == null || item.product.images.length == 0" src="assets/img/avatar/luke.jpg">
         </ion-thumbnail>
         <h2>{{ item.product.name }}</h2>
-        <p>{{ 'Common.Quantity' | translate }}: {{ item.quantity }}</p>
-        <p>{{ 'Common.Prices' | translate }}: {{ item.price_excl_tax }} VND</p>
-        <p>{{ 'Common.Total' | translate }}: {{ item.product.price }} VND</p>
+        <p>{{ 'Common.Quantity' | translate }}: {{ item.quantity | number }}</p>
+        <p>{{ 'Common.Prices' | translate }}: {{ item.price_excl_tax | number }} VND</p>
+        <p>{{ 'Common.Total' | translate }}: {{ item.product.price | number }} VND</p>
         <button ion-button clear item-end>{{ 'Common.BtnView' | translate }}</button>
       </ion-item>
     </ion-list>
