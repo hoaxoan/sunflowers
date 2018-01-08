@@ -20,7 +20,7 @@
           <a>#{{ order.id }}</a>
         </ion-col>
         <ion-col col-6>
-          <ion-icon name='call'>
+          <ion-icon color="primary" name='call'>
             <a *ngIf="order.shipping_address != null">{{order.shipping_address.phone_number}}</a>
             <a *ngIf="order.shipping_address == null && order.billing_address != null">{{order.billing_address.phone_number}}</a>
           </ion-icon>

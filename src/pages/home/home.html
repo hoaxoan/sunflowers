@@ -13,7 +13,10 @@
 </ion-header>
 
 <ion-content>
-
+  <div *ngIf="!loaded" style="margin: auto; width: 15%; padding: 6px;">
+      <ion-spinner full item-start name="ios"></ion-spinner>
+  </div>
+   
   <ion-list *ngFor="let order of orders">
     <ion-list-header>
       <ion-row>
@@ -70,4 +73,14 @@
     </ion-item>
   </ion-list>
 
+  <ion-list *ngIf="loaded && (!orders || orders.length <= 0)">
+    <ion-item>
+      <p>{{ 'Common.Empty' | translate }}</p>
+    </ion-item>
+  </ion-list>
+  
+  <ion-infinite-scroll *ngIf="canLoadMore" (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  
 </ion-content>

@@ -25,7 +25,8 @@
     "Loading": "Đang tải ...",
     "Saving": "Đang lưu ...",
     "Success": "Lưu thành công.",
-    "Fail": "Lưu thất bại."
+    "Fail": "Lưu thất bại.",
+    "Empty": "Danh sách rỗng"
   },
   "Menu": {
     "Dashboard": "Dashboard",

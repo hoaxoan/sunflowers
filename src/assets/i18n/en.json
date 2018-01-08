@@ -25,7 +25,8 @@
     "Loading": "Loading ...",
     "Saving": "Saving ...",
     "Success": "Save success.",
-    "Fail": "Save fail."
+    "Fail": "Save fail.",
+    "Empty": "There empty"
   },
   "Menu": {
     "Dashboard": "Dashboard",
