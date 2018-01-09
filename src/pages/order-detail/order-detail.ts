@@ -1,6 +1,7 @@
 import { DefApiProvider } from '../../providers/api/def-api';
 import { Component, ViewChild, Renderer } from '@angular/core';
 import { CallNumber } from '@ionic-native/call-number';
+import { Geolocation } from '@ionic-native/geolocation';
 
 import {
   Content,
@@ -35,6 +36,7 @@ export class OrderDetailPage {
     public renderer: Renderer,
     public modalCtrl: ModalController,
     public callNumber: CallNumber,
+    public geolocation: Geolocation,
     public defApi: DefApiProvider,
     private platform: Platform,
     private app: App) {
@@ -88,18 +90,36 @@ export class OrderDetailPage {
 
   }
 
-  openDialer(order) {
-    let phoneNumber: string = null;
+  async openDialer(order): Promise<any> {
+    try {
+      let phoneNumber: string = null;
 
-    if (order.shipping_address != null) {
-      let phoneNumber = order.shipping_address.phone_number;
-    } else if (order.billing_address != null) {
-      let phoneNumber = order.billing_address.phone_number;
+      if (order.shipping_address != null) {
+        let phoneNumber = order.shipping_address.phone_number;
+      } else if (order.billing_address != null) {
+        let phoneNumber = order.billing_address.phone_number;
+      }
+      if (phoneNumber == null || phoneNumber == "") {
+        return;
+      }
+      await this.callNumber.callNumber(phoneNumber, false)
+        .then(() => console.log('Launched dialer!'))
+        .catch(() => console.log('Error launching dialer'));
+    } catch (e) {
+      console.log(e);
     }
-    if (phoneNumber == null || phoneNumber == "") {
-      return;
-    }
-    this.callNumber.callNumber(phoneNumber, true).then(response => {
+  }
+
+  startExternalMap() {
+    this.geolocation.getCurrentPosition().then(position => {
+      // ios
+      if (this.platform.is('ios')) {
+        window.open('maps://saddr=' + position.coords.latitude + ',' + position.coords.longitude + '&daddr=' + position.coords.latitude + ',' +  position.coords.longitude, '_system');
+      };
+      // android
+      if (this.platform.is('android')) {
+        window.open('geo://' + position.coords.latitude + ',' + position.coords.longitude + '?q=' +  position.coords.latitude + ',' +  position.coords.longitude, '_system');
+      };
     });
   }
 

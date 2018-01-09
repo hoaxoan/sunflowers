@@ -61,13 +61,16 @@
     "moment": "^2.19.3",
     "rxjs": "5.5.2",
     "sw-toolbox": "3.6.0",
-    "zone.js": "0.8.18"
+    "zone.js": "0.8.18",
+    "mx.ferreyra.callnumber": "~0.0.2"
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.1.5",
     "typescript": "~2.4.2"
   },
   "config": {
+    "ionic_source_map_type": "source-map",
+    "ionic_generate_source_map": true,
     "ionic_aot_write_to_disk": true
   },
   "cordova": {

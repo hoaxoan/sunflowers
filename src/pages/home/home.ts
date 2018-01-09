@@ -92,19 +92,24 @@ export class HomePage {
     }, 1000);
   }
 
-  openDialer(order) {
-    let phoneNumber: string = null;
+  async openDialer(order): Promise<any> {
+    try {
+      let phoneNumber: string = null;
 
-    if (order.shipping_address != null) {
-      let phoneNumber = order.shipping_address.phone_number;
-    } else if (order.billing_address != null) {
-      let phoneNumber = order.billing_address.phone_number;
+      if (order.shipping_address != null) {
+        let phoneNumber = order.shipping_address.phone_number;
+      } else if (order.billing_address != null) {
+        let phoneNumber = order.billing_address.phone_number;
+      }
+      if (phoneNumber == null || phoneNumber == "") {
+        return;
+      }
+      await this.callNumber.callNumber(phoneNumber, false)
+        .then(() => console.log('Launched dialer!'))
+        .catch(() => console.log('Error launching dialer'));
+    } catch (e) {
+      console.log(e);
     }
-    if (phoneNumber == null || phoneNumber == "") {
-      return;
-    }
-    this.callNumber.callNumber(phoneNumber, true).then(response => {
-    });
   }
 
   formatDateTime(dateTime: string) {
