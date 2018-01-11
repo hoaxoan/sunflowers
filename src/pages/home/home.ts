@@ -1,9 +1,12 @@
 import { DefApiProvider } from '../../providers/api/def-api';
 import { Component } from '@angular/core';
-import { IonicPage, MenuController, NavController, NavParams } from 'ionic-angular';
+import { ModalController, IonicPage, Platform, ViewController, MenuController, NavController, NavParams, 
+  ToastController, Refresher } from 'ionic-angular';
 import { AppState } from '../../app/app.global';
 import { Storage } from '@ionic/storage';
 import { CallNumber } from '@ionic-native/call-number';
+import { TranslateService } from '@ngx-translate/core';
+import { HomeFilterPage } from '../home-filter/home-filter';
 
 @IonicPage()
 @Component({
@@ -12,22 +15,31 @@ import { CallNumber } from '@ionic-native/call-number';
 })
 export class HomePage {
 
-
-  status_id: any;
+  status: any;
   orders = [];
   page = 1;
   canLoadMore = false;
   loaded = false;
+  params: any;
+
 
   constructor(public navCtrl: NavController,
+    public modalCtrl: ModalController,
     public navParams: NavParams,
     public global: AppState,
     public storage: Storage,
     public callNumber: CallNumber,
     public defApi: DefApiProvider,
+    public toastCtrl: ToastController,
+    public translate : TranslateService,
     public menu: MenuController) {
     menu.swipeEnable(true, 'menu');
-    this.status_id = navParams.data;
+    this.status = navParams.get('status');
+    console.log(this.status);
+    this.params = {
+      status: this.status,
+      page: this.page
+    };
     this.loadData(true);
   }
 
@@ -36,12 +48,9 @@ export class HomePage {
       this.page = 1;
     }
 
-    let params = {
-      status: this.status_id,
-      page: this.page
-    };
+    this.params.page = this.page;
 
-    this.defApi.getOrders(params).subscribe(response => {
+    this.defApi.getOrders(this.params).subscribe(response => {
       if (this.page == 1) {
         this.orders = response.orders;
       } else {
@@ -49,11 +58,15 @@ export class HomePage {
       }
 
       this.page++;
-      if (response != null && response.orders.length > 0) {
+      if (this.orders != null && this.orders.length > 0) {
         this.canLoadMore = true;
       }
 
       this.loaded = true;
+    },
+    error => {
+      this.loaded = true;
+      this.canLoadMore = false;
     });
   }
 
@@ -111,6 +124,56 @@ export class HomePage {
       console.log(e);
     }
   }
+
+  doRefresh(refresher: Refresher) {
+    this.params.page = 1;
+
+    this.defApi.getOrders(this.params).subscribe(response => {
+      this.orders = response.orders;
+
+      this.page++;
+      if (this.orders != null && this.orders.length > 0) {
+        this.canLoadMore = true;
+      }
+
+      this.loaded = true;
+
+      // simulate a network request that would take longer
+      // than just pulling from out local json file
+      setTimeout(() => {
+        refresher.complete();
+
+        const toast = this.toastCtrl.create({
+          message: this.translate.instant("Order.OrderUpdated"),
+          duration: 3000
+        });
+        toast.present();
+      }, 1000);
+
+    },
+    error => {
+      this.loaded = true;
+      this.canLoadMore = false;
+      refresher.complete();
+    });
+    
+  }
+
+  presentFilter() {
+    let modal = this.modalCtrl.create(HomeFilterPage, this.params);
+    modal.present();
+
+    modal.onWillDismiss((data: any[]) => {
+      if (data) {
+        // update data
+        this.params = data;
+        this.params.status = null;
+        console.log(data);
+        this.getOrder(true);
+      }
+    });
+  }
+
 
   formatDateTime(dateTime: string) {
     return dateTime;

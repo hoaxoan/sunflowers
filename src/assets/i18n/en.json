@@ -26,7 +26,9 @@
     "Saving": "Saving ...",
     "Success": "Save success.",
     "Fail": "Save fail.",
-    "Empty": "There empty"
+    "Empty": "There empty",
+    "BtnDone": "Done",
+    "BtnCancel": "Cancel"
   },
   "Menu": {
     "Dashboard": "Dashboard",
@@ -51,7 +53,11 @@
     "PaymentStatus": "Payment Status",
     "MarkAsPaid": "Mark as Paid",
     "ManageOrder": "Manage Order",
-    "ShippedDate": "ShippedDate"
+    "ShippedDate": "Shipped Date",
+    "FromShippedDate": "From Shipped Date",
+    "ToShippedDate": "To Shipped Date",
+    "FilterOrder": "Filter Order",
+    "OrderUpdated": "List order have been updated."
   },
   "Dashboard": {
     "Dashboard": "Dashboard",

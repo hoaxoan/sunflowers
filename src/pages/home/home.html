@@ -8,11 +8,18 @@
       <button ion-button icon-only>
         <ion-icon name="search"></ion-icon>
       </button>
+      <button ion-button icon-only (click)="presentFilter()">
+        <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
+      </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <div *ngIf="!loaded" style="margin: auto; width: 15%; padding: 6px;">
       <ion-spinner full item-start name="ios"></ion-spinner>
   </div>
@@ -78,7 +85,7 @@
       <p>{{ 'Common.Empty' | translate }}</p>
     </ion-item>
   </ion-list>
-  
+
   <ion-infinite-scroll *ngIf="canLoadMore" (ionInfinite)="loadMore($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>

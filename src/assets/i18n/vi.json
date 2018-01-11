@@ -26,7 +26,9 @@
     "Saving": "Đang lưu ...",
     "Success": "Lưu thành công.",
     "Fail": "Lưu thất bại.",
-    "Empty": "Danh sách rỗng"
+    "Empty": "Danh sách rỗng",
+    "BtnDone": "Thực hiện",
+    "BtnCancel": "Hủy"
   },
   "Menu": {
     "Dashboard": "Dashboard",
@@ -51,7 +53,11 @@
     "PaymentStatus": "Thanh toán",
     "MarkAsPaid": "Đã thanh toán",
     "ManageOrder": "Quản Lý Đơn Hàng",
-    "ShippedDate": "Ngày giao hàng"
+    "ShippedDate": "Ngày giao hàng",
+    "FromShippedDate": "Từ ngày giao hàng",
+    "ToShippedDate": "Đến ngày giao hàng",
+    "FilterOrder": "Lọc đơn hàng",
+    "OrderUpdated": "Danh sách đơn hàng đã được tải."
   },
   "Dashboard": {
     "Dashboard": "Dashboard",

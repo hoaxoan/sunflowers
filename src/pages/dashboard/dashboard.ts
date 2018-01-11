@@ -34,7 +34,7 @@ export class DashboardPage {
   }
 
   loadInit() {
-    let today = moment().format('YYYY-MM-DD'); ;
+    let today = moment().format('YYYY-MM-DD');
     let markAsDeliveryDate = 0;
     let deliveryDate = today;
 
@@ -50,7 +50,7 @@ export class DashboardPage {
   }
 
   viewOrder(status_id){
-    this.navCtrl.push('HomePage', status_id);
+    this.navCtrl.push('HomePage', { status: status_id });
   }
 
   loadOrderStatus(){
