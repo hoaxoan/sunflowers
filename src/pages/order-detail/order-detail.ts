@@ -2,6 +2,7 @@ import { DefApiProvider } from '../../providers/api/def-api';
 import { Component, ViewChild, Renderer } from '@angular/core';
 import { CallNumber } from '@ionic-native/call-number';
 import { Geolocation } from '@ionic-native/geolocation';
+import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 
 import {
   Content,
@@ -37,6 +38,7 @@ export class OrderDetailPage {
     public modalCtrl: ModalController,
     public callNumber: CallNumber,
     public geolocation: Geolocation,
+    public nativeGeocoder: NativeGeocoder,
     public defApi: DefApiProvider,
     private platform: Platform,
     private app: App) {
@@ -49,7 +51,7 @@ export class OrderDetailPage {
   viewOrderEdit(order) {
     this.navCtrl.push('OrderEditPage', order);
   }
-  
+
   loadAddress() {
     // Billing Address
     if (this.billingAddress != null) {
@@ -111,7 +113,11 @@ export class OrderDetailPage {
   }
 
   startExternalMap(address) {
-  
+    this.nativeGeocoder.forwardGeocode(address.full_address)
+      .then((coordinates: NativeGeocoderForwardResult) => {
+        console.log('The coordinates are latitude=' + coordinates.latitude + ' and longitude=' + coordinates.longitude)
+      })
+      .catch((error: any) => console.log(error));
   }
 
 }

@@ -50,49 +50,11 @@ export class WorldMapPage {
     this.loadGoogleMaps();
   }
 
-  isFirstAccess(){
-    return this.storage.get('firstAccess').then((data) => {
-      if(data !== null){
-        return data;
-      } else {
-        return true;
-      }
-    });
-  }
-
   requestUserInfo(){
-    this.isFirstAccess().then(isFirst => {
-      if(isFirst) {
-        this.alertCtrl.getUserConsent().then(yes => {
-          if(yes){
-            this.getUserInfo();
-          }
-          this.storage.set('firstAccess', false);
-        });
-      }
-    });
+    this.centerToMyLocation();
   }
 
-  getUserInfo() {
-    this.alertCtrl.getUserName().then( name => {
-      this.geolocation.getCurrentPosition().then(position => {
-        let user = {
-          name: name,
-          side: this.global.get('side'),
-          uuid: this.global.get('uuid'),
-          icon: (Math.floor(Math.random() * 6) + 1),
-          position: {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          }
-        }
-        this.firebaseData.writeUserData(user);
-      }, error => {
-        console.log('geolocation error');
-      });
-    });
-  }
-
+ 
   loadGoogleMaps() {
     this.addConnectivityListeners();
     if (typeof google == "undefined" || typeof google.maps == "undefined") {
@@ -133,7 +95,8 @@ export class WorldMapPage {
 
     let mapOptions = {
       center: null,
-      styles: this.global.get('side') === 'light' ? lightMapStyles : darkMapStyles,
+      stylers: lightMapStyles,
+      // styles: this.global.get('side') === 'light' ? lightMapStyles : darkMapStyles,
       zoom: 4,
       streetViewControl: false,
       fullscreenControl: false,
@@ -150,7 +113,7 @@ export class WorldMapPage {
       this.watchForChanges();
       setImmediate(this.requestUserInfo(),300);
     }, error => {
-      mapOptions.center = new google.maps.LatLng(-31.563910, 147.154312);
+      mapOptions.center = new google.maps.LatLng(10.762622, 106.660172);
       this.mapElement = document.getElementById('map');
       this.map = new google.maps.Map(this.mapElement, mapOptions);
       this.watchForChanges();
@@ -192,78 +155,43 @@ export class WorldMapPage {
     });
   }
 
-  addMarker(data) {
-    let marker = new google.maps.Marker({
-          clickable: true,
-          position: data.position,
-          animation: google.maps.Animation.DROP,
-          map: this.map,
-          icon: `assets/maps/pin-${data.side}-${data.icon}.png`,
-        });
-
-    let infowindow = new google.maps.InfoWindow({
-      content: data.name
-    });
-
-    marker.addListener('click', () => {
-      infowindow.open(this.map, marker);
-    });
-
-    this.markers.set(data.uuid, marker);
-    this.users.push(data);
-  }
-
-  saveMarker(data) {
-    let marker = this.markers.get(data.uuid);
-
-    if(marker){
-      this.updateMarker(data, marker);
-    } else {
-      this.addMarker(data);
-    }
-    this.updateCounters();
-  }
-
-  updateMarker(data, marker) {
-    marker.setPosition(data.position);
-    marker.setIcon(`assets/maps/pin-${data.side}-${data.icon}.png`);
-
-    let index = this.users.findIndex(user => user.uuid === data.uuid);
-    if(index != -1) {
-      this.users[index] = data;
-    }
-  }
-
   watchForChanges() {
-    this.firebaseData.watchForUpdates().subscribe((updatedUser: any) => {
-      this.saveMarker(updatedUser);
-    });
-  }
-
-  addUser(user) {
-    if(this.users.indexOf(user.uuid) === -1){
-      this.users.push(user);
-    }
-  }
-
-  updateCounters() {
-    this.lightSideCount = this.users.reduce((total,user) => user.side === 'light' ? total+1 : total, 0);
-    this.darkSideCount = this.users.length - this.lightSideCount;
+    // this.firebaseData.watchForUpdates().subscribe((updatedUser: any) => {
+    // });
   }
 
   centerToMyLocation() {
     if (this.myLocation) {
       this.map.setZoom(13);
       this.map.panTo(this.myLocation);
+      this.addMarker(this.myLocation, "My Location");
     } else {
       this.geolocation.getCurrentPosition().then((position) => {
         let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
         this.myLocation = latLng;
         this.map.setZoom(13);
         this.map.panTo(latLng);
+        this.addMarker(this.myLocation, "My Location");
       }).catch(error => {
         console.log('geolocation error', error);
       });
     }
+  }
+
+  addMarker(position, name) {
+    let marker = new google.maps.Marker({
+          clickable: true,
+          position: position,
+          animation: google.maps.Animation.DROP,
+          map: this.map
+        });
+
+    let infowindow = new google.maps.InfoWindow({
+      content: name
+    });
+
+    marker.addListener('click', () => {
+      infowindow.open(this.map, marker);
+    });
   }
 }

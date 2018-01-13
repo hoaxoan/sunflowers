@@ -28,7 +28,9 @@
     "Fail": "Save fail.",
     "Empty": "There empty",
     "BtnDone": "Done",
-    "BtnCancel": "Cancel"
+    "BtnCancel": "Cancel",
+    "NoConnected": "Please connect to the Internet...",
+    "Map": "Map"
   },
   "Menu": {
     "Dashboard": "Dashboard",

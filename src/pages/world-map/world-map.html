@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Force map</ion-title>
+    <ion-title>{{ 'Common.Map' | translate }}</ion-title>
     <ion-buttons right>
       <button ion-button icon-only (click)='centerToMyLocation()'>
         <ion-icon name="ios-locate-outline"></ion-icon>
@@ -14,16 +14,9 @@
 
 <ion-content>
     <div #pleaseConnect id="please-connect">
-        <p>Please connect to the Internet...</p>
+        <p>{{ 'Common.NoConnected' | translate }}</p>
     </div>
 
     <div #map id="map"></div>
-    <div id="lightsaber-container">
-      <span [style.width.%]="(lightSideCount/users.length) * 100" class="lightsaber dark"></span>
-      <span [style.width.%]="(darkSideCount/users.length) * 100" class="lightsaber light"></span>
-      <div class="info" style="text-align: center">
-        <span class="float-left">Dark: {{ darkSideCount }}</span>
-        <span class="float-right">Light: {{ lightSideCount }}</span>
-      </div>
-    </div>
+
 </ion-content>

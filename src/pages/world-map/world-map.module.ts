@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { WorldMapPage } from './world-map';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -8,6 +9,7 @@ import { WorldMapPage } from './world-map';
   ],
   imports: [
     IonicPageModule.forChild(WorldMapPage),
+    TranslateModule.forChild(),
   ],
   exports: [
     WorldMapPage

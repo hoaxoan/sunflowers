@@ -28,7 +28,9 @@
     "Fail": "Lưu thất bại.",
     "Empty": "Danh sách rỗng",
     "BtnDone": "Thực hiện",
-    "BtnCancel": "Hủy"
+    "BtnCancel": "Hủy",
+    "NoConnected": "Vui lòng kết nối mạng...",
+    "Map": "Bản đồ"
   },
   "Menu": {
     "Dashboard": "Dashboard",
