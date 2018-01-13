@@ -2,10 +2,11 @@ import { AppState } from '../../app/app.global';
 import { ConnectivityProvider } from '../../providers/connectivity/connectivity';
 import { FirebaseDataProvider } from '../../providers/firebase-data/firebase-data';
 import { Component, ViewChild, ElementRef, Renderer } from '@angular/core';
-import { IonicPage, MenuController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, MenuController, NavParams, Platform, ToastController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Storage } from '@ionic/storage';
 import { AlertService } from '../../providers/alert/alert';
+import { TranslateService } from '@ngx-translate/core';
 
 declare var google: any;
 
@@ -39,7 +40,9 @@ export class WorldMapPage {
     public geolocation: Geolocation,
     public firebaseData: FirebaseDataProvider,
     public alertCtrl: AlertService,
-    public storage: Storage,) {
+    public storage: Storage,
+    public toastCtrl: ToastController,
+    private translate : TranslateService) {
       menu.swipeEnable(false, 'menu');
       this.address = navParams.data;
       this.loadGoogleMaps();
@@ -51,7 +54,7 @@ export class WorldMapPage {
   }
 
   requestLocation(){
-    if(this.address != null) {
+    if(this.address != null && this.address.address != null) {
       this.centerToLocation(this.address);
     } else {
       this.centerToMyLocation();
@@ -109,7 +112,6 @@ export class WorldMapPage {
     }
 
     this.geolocation.getCurrentPosition().then((position) => {
-      console.log(position);
       let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
       this.myLocation = latLng;
       mapOptions.center = latLng;
@@ -170,14 +172,14 @@ export class WorldMapPage {
     if (this.myLocation) {
       this.map.setZoom(13);
       this.map.panTo(this.myLocation);
-      this.addMarker(this.myLocation, "My Location");
+      this.addMarker(this.myLocation, this.translate.instant("Common.MyLocation"));
     } else {
       this.geolocation.getCurrentPosition().then((position) => {
         let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
         this.myLocation = latLng;
         this.map.setZoom(13);
         this.map.panTo(latLng);
-        this.addMarker(this.myLocation, "My Location");
+        this.addMarker(this.myLocation, this.translate.instant("Common.MyLocation"));
       }).catch(error => {
         console.log('geolocation error', error);
       });
@@ -191,6 +193,39 @@ export class WorldMapPage {
     this.addMarker(latLng, address.address.full_address);
   }
 
+
+  calculateAndDisplayRoute() {
+    if(this.address == null || this.address.address == null){
+      const toast = this.toastCtrl.create({
+        message: this.translate.instant("Order.OrderUpdated"),
+        duration: 3000
+      });
+      toast.present();
+      return;
+    }
+
+    var directionsService = new google.maps.DirectionsService;
+    var directionsDisplay = new google.maps.DirectionsRenderer;
+    directionsDisplay.setMap(this.map);
+    
+    let destination = new google.maps.LatLng(this.address.latitude, this.address.longitude);
+
+    directionsService.route({
+      origin: this.myLocation,
+      destination: destination,
+      optimizeWaypoints: true,
+      travelMode: 'DRIVING'
+    }, function(response, status) {
+      if (status === 'OK') {
+        directionsDisplay.setDirections(response);
+        console.log(response);
+      } else {
+        console.log('Directions request failed due to ' + status);
+      }
+    });
+
+  }
+
   addMarker(position, name) {
     let marker = new google.maps.Marker({
           clickable: true,
@@ -199,9 +234,19 @@ export class WorldMapPage {
           map: this.map
         });
 
+    let content = 
+    '<div><div><span>' + name + '</span></div>' +
+    '<div class="view-link"> ' +
+      '<a target="_blank" jstcache="6" href="https://maps.google.com/maps?ll=' + position.lat() + ',' 
+        + position.lng() + '&amp;z=13mapclient=apiv3">' +
+        '<span> ' + this.translate.instant("Common.ViewGoogleMaps") + ' </span>' +
+      '</a>' +
+    '</div></div>';
+
     let infowindow = new google.maps.InfoWindow({
-      content: name
+      content: content
     });
+
 
     marker.addListener('click', () => {
       infowindow.open(this.map, marker);

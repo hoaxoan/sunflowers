@@ -30,7 +30,9 @@
     "BtnDone": "Thực hiện",
     "BtnCancel": "Hủy",
     "NoConnected": "Vui lòng kết nối mạng...",
-    "Map": "Bản đồ"
+    "Map": "Bản đồ",
+    "MyLocation": "Vị trí hiện tại",
+    "ViewGoogleMaps": "Hiễn thị trên Google Maps"
   },
   "Menu": {
     "Dashboard": "Dashboard",

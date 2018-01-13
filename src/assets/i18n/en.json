@@ -30,7 +30,9 @@
     "BtnDone": "Done",
     "BtnCancel": "Cancel",
     "NoConnected": "Please connect to the Internet...",
-    "Map": "Map"
+    "Map": "Map",
+    "MyLocation": "My Location",
+    "ViewGoogleMaps": "View on Google Maps"
   },
   "Menu": {
     "Dashboard": "Dashboard",
