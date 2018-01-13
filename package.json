@@ -27,8 +27,10 @@
     "@ionic-native/fcm": "^4.5.2",
     "@ionic-native/flashlight": "^4.5.2",
     "@ionic-native/geolocation": "^4.5.2",
+    "@ionic-native/google-maps": "^4.5.2",
     "@ionic-native/in-app-browser": "^4.3.1",
     "@ionic-native/native-audio": "^4.5.2",
+    "@ionic-native/native-geocoder": "^4.5.2",
     "@ionic-native/network": "^4.5.2",
     "@ionic-native/shake": "^4.5.2",
     "@ionic-native/splash-screen": "^4.3.1",
@@ -59,10 +61,10 @@
     "ionicons": "3.0.0",
     "lodash": "^4.17.4",
     "moment": "^2.19.3",
+    "mx.ferreyra.callnumber": "~0.0.2",
     "rxjs": "5.5.2",
     "sw-toolbox": "3.6.0",
-    "zone.js": "0.8.18",
-    "mx.ferreyra.callnumber": "~0.0.2"
+    "zone.js": "0.8.18"
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.1.5",
@@ -96,7 +98,8 @@
       "cordova-plugin-fcm": {
         "SENDER_ID": "1003499785313"
       },
-      "mx.ferreyra.callnumber": {}
+      "mx.ferreyra.callnumber": {},
+      "call-number": {}
     }
   }
 }
