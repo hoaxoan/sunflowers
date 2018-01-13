@@ -22,6 +22,7 @@ import { NativeAudio } from '@ionic-native/native-audio';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 import { Geolocation } from '@ionic-native/geolocation';
+import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import { Flashlight } from '@ionic-native/flashlight';
 import { IonicStorageModule } from '@ionic/storage';
 import { FCM } from '@ionic-native/fcm';
@@ -102,6 +103,7 @@ export const firebaseConfig = {
     FirebaseDataProvider,
     Flashlight,
     Geolocation,
+    NativeGeocoder,
     Network,
     FCM,
     CallNumber,

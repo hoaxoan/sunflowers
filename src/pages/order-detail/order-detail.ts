@@ -116,6 +116,13 @@ export class OrderDetailPage {
     this.nativeGeocoder.forwardGeocode(address.full_address)
       .then((coordinates: NativeGeocoderForwardResult) => {
         console.log('The coordinates are latitude=' + coordinates.latitude + ' and longitude=' + coordinates.longitude)
+        let data = { 
+          address: address,
+          latitude: coordinates.latitude,
+          longitude: coordinates.longitude
+        };
+
+        this.navCtrl.push('WorldMapPage', data);
       })
       .catch((error: any) => console.log(error));
   }

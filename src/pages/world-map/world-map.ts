@@ -26,9 +26,9 @@ export class WorldMapPage {
   mapsUrl = 'https://maps.google.com/maps/api/';
   apiKey: string = "AIzaSyAssj0h93YuqFKmm1xGLkb5-NXc12sLL2Y";
   myLocation: any;
-  users = [];
   lightSideCount: any;
   darkSideCount: any;
+  address: any;
 
   constructor(public navParams: NavParams,
     public renderer: Renderer,
@@ -41,17 +41,21 @@ export class WorldMapPage {
     public alertCtrl: AlertService,
     public storage: Storage,) {
       menu.swipeEnable(false, 'menu');
+      this.address = navParams.data;
       this.loadGoogleMaps();
   }
 
   ionViewDidLoad() {
     this.markers = new Map();
-    this.users = [];
     this.loadGoogleMaps();
   }
 
-  requestUserInfo(){
-    this.centerToMyLocation();
+  requestLocation(){
+    if(this.address != null) {
+      this.centerToLocation(this.address);
+    } else {
+      this.centerToMyLocation();
+    }
   }
 
  
@@ -105,19 +109,21 @@ export class WorldMapPage {
     }
 
     this.geolocation.getCurrentPosition().then((position) => {
+      console.log(position);
       let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
       this.myLocation = latLng;
       mapOptions.center = latLng;
       this.mapElement = document.getElementById('map');
       this.map = new google.maps.Map(this.mapElement, mapOptions);
       this.watchForChanges();
-      setImmediate(this.requestUserInfo(),300);
+      setImmediate(this.requestLocation(),300);
     }, error => {
+      console.log(error);
       mapOptions.center = new google.maps.LatLng(10.762622, 106.660172);
       this.mapElement = document.getElementById('map');
       this.map = new google.maps.Map(this.mapElement, mapOptions);
       this.watchForChanges();
-      setImmediate(this.requestUserInfo(),300);
+      setImmediate(this.requestLocation(),300);
     });
   }
 
@@ -176,6 +182,13 @@ export class WorldMapPage {
         console.log('geolocation error', error);
       });
     }
+  }
+
+  centerToLocation(address) {
+    let latLng = new google.maps.LatLng(address.latitude, address.longitude);
+    this.map.setZoom(13);
+    this.map.panTo(latLng);
+    this.addMarker(latLng, address.address.full_address);
   }
 
   addMarker(position, name) {
