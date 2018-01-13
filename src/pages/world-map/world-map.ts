@@ -24,7 +24,7 @@ export class WorldMapPage {
   mapInitialised: boolean = false;
   markers = new Map<string, any>();
   mapsUrl = 'https://maps.google.com/maps/api/';
-  apiKey: string = "AIzaSyDDBFb61Xgfw8RG28BHFB6lMm4D3de-A1U";
+  apiKey: string = "AIzaSyAssj0h93YuqFKmm1xGLkb5-NXc12sLL2Y";
   myLocation: any;
   users = [];
   lightSideCount: any;

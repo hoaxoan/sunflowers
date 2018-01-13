@@ -110,17 +110,8 @@ export class OrderDetailPage {
     }
   }
 
-  startExternalMap() {
-    this.geolocation.getCurrentPosition().then(position => {
-      // ios
-      if (this.platform.is('ios')) {
-        window.open('maps://saddr=' + position.coords.latitude + ',' + position.coords.longitude + '&daddr=' + position.coords.latitude + ',' +  position.coords.longitude, '_system');
-      };
-      // android
-      if (this.platform.is('android')) {
-        window.open('geo://' + position.coords.latitude + ',' + position.coords.longitude + '?q=' +  position.coords.latitude + ',' +  position.coords.longitude, '_system');
-      };
-    });
+  startExternalMap(address) {
+  
   }
 
 }

@@ -75,7 +75,7 @@
     <!-- Address -->
     <div *ngSwitchCase="'address'">
       <ion-list *ngIf="shippingAddress != null">
-        <ion-item style="color: #488aff;" (click)="startExternalMap()">
+        <ion-item style="color: #488aff; cursor: pointer;" (click)="startExternalMap(shippingAddress)">
           <ion-icon name="locate" item-start color="primary"></ion-icon>
           {{ 'Common.ShippingAddress' | translate }}
         </ion-item>
@@ -110,7 +110,7 @@
       </ion-list>
 
       <ion-list *ngIf="billingAddress != null">
-        <ion-item style="color: #488aff;">
+        <ion-item style="color: #488aff; cursor: pointer;" (click)="startExternalMap(billingAddress)">
           <ion-icon name="locate" item-start color="primary"></ion-icon>
           {{ 'Common.BillingAddress' | translate }}
         </ion-item>
