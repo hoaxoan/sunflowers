@@ -19,6 +19,7 @@
     "AddressLabel": "Địa Chỉ",
     "ProductLabel": "Sản Phẩm",
     "Quantity": "Số lượng",
+    "StockQuantity": "Số lượng kho",
     "Prices": "Giá",
     "Total": "Tổng",
     "TotalAmount": "Tổng tiền",

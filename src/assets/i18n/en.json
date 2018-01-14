@@ -19,6 +19,7 @@
     "AddressLabel": "Address",
     "ProductLabel": "Products",
     "Quantity": "Quantity",
+    "StockQuantity": "Stock Quantity",
     "Prices": "Prices",
     "Total": "Total",
     "TotalAmount": "Total Amount",

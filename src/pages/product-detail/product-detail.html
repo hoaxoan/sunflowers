@@ -31,12 +31,27 @@
     <!-- Info -->
     <ion-list *ngSwitchCase="'product'">
       <ion-item>
+        <h2>{{ product.name }}</h2>
+        <p>{{ 'Common.StockQuantity' | translate }}: {{ product.stock_quantity | number }}</p>
+        <p style="color: #ff0000">{{ 'Common.Prices' | translate }}: {{ product.price | number }} VND</p>
+      </ion-item>
+      <ion-item>
+        <ion-slides pager>
+          <ion-slide *ngFor="let image of product.images">
+            <img [src]="image.src" style="height: 180px; width: 100%;">
+          </ion-slide>
+        </ion-slides>
+      </ion-item>
+      <ion-item>
+        <h2>{{ product.short_description }}</h2>
       </ion-item>
     </ion-list>
 
     <!-- details -->
     <div *ngSwitchCase="'detail'">
-      
+      <ion-item>
+        <h2>{{ product.full_description }}</h2>
+      </ion-item>
     </div>
 
     <!-- reviews -->
