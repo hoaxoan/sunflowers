@@ -37,6 +37,7 @@
   "Menu": {
     "Dashboard": "Dashboard",
     "Order": "Đơn Hàng",
+    "Product": "Sản Phẩm",
     "Map": "Bản Đồ",
     "Login": "Đăng Nhập",
     "SignUp": "Đăng Kí"
@@ -62,6 +63,9 @@
     "ToShippedDate": "Đến ngày giao hàng",
     "FilterOrder": "Lọc đơn hàng",
     "OrderUpdated": "Danh sách đơn hàng đã được tải."
+  },
+  "Product": {
+    "Product": "Sản phẩm"
   },
   "Dashboard": {
     "Dashboard": "Dashboard",

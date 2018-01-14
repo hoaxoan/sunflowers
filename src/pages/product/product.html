@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{ 'Product.Product' | translate }}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="search"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="presentFilter()">
+        <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="!loaded" style="margin: auto; width: 15%; padding: 6px;">
+    <ion-spinner full item-start name="ios"></ion-spinner>
+  </div>
+
+  <ion-list>
+    <ion-grid fixed>
+      <ion-row align-items-stretch>
+
+        <ion-col *ngFor="let product of productLefts" col-6 col-md-6 align-self-stretch align-self-center style="padding: 0px;">
+          <ion-card (click)="viewProductDetail(product)">
+
+            <img *ngIf="product.images.length > 0" [src]="product.images[0].src" style="height: 160px;">
+            <img *ngIf="product.images == null || product.images.length == 0" src="assets/img/avatar/luke.jpg"  style="height: 160px;">
+
+            <ion-card-content style="padding: 13px 8px;">
+              <p>
+                {{ product.name }}
+              </p>
+              <p style="color: #ff0000">
+                {{ product.price | number }} VND
+              </p>
+            </ion-card-content>
+
+            <ion-row no-padding>
+            </ion-row>
+
+          </ion-card>
+        </ion-col>
+
+        <ion-col *ngFor="let product of productRights" col-6 col-md-6 align-self-stretch align-self-center style="padding: 0px;">
+          <ion-card (click)="viewProductDetail(product)">
+
+            <img *ngIf="product.images.length > 0" [src]="product.images[0].src" style="height: 160px;">
+            <img *ngIf="product.images == null || product.images.length == 0" src="assets/img/avatar/luke.jpg"  style="height: 160px;">
+
+            <ion-card-content style="padding: 13px 8px;">
+              <p>
+                {{ product.name }}
+              </p>
+              <p style="color: #ff0000">
+                {{ product.price | number }} VND
+              </p>
+            </ion-card-content>
+
+            <ion-row no-padding>
+            </ion-row>
+
+          </ion-card>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+
+  </ion-list>
+
+  <ion-list *ngIf="loaded && (!products || products.length <= 0)">
+    <ion-item>
+      <p>{{ 'Common.Empty' | translate }}</p>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll *ngIf="canLoadMore" (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

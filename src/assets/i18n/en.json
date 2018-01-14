@@ -37,6 +37,7 @@
   "Menu": {
     "Dashboard": "Dashboard",
     "Order": "Order",
+    "Product": "Product",
     "Map": "Map",
     "Login": "Login",
     "SignUp": "Sign Up"
@@ -62,6 +63,9 @@
     "ToShippedDate": "To Shipped Date",
     "FilterOrder": "Filter Order",
     "OrderUpdated": "List order have been updated."
+  },
+  "Product": {
+    "Product": "Product"
   },
   "Dashboard": {
     "Dashboard": "Dashboard",

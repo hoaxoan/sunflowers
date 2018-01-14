@@ -10,8 +10,8 @@ import { concat } from 'rxjs/observable/concat';
 
 @Injectable()
 export class DefApiProvider {
-  private baseUrl = "http://sunflowershops.com/";
-  //private baseUrl = "http://localhost:15536/";
+  //private baseUrl = "http://sunflowershops.com/";
+  private baseUrl = "http://localhost:15536/";
 
   constructor(public http: Http, 
     public cache: CacheService,
@@ -89,9 +89,10 @@ export class DefApiProvider {
     return this.post(this.baseUrl + endpoint, data);
   }
 
-  getProducts(){
+  getProducts(data: any){
     let endpoint = 'api/products';
-    return this.getWithAuth(this.baseUrl + endpoint, {});
+    let params = this.getParams(data);	
+    return this.getWithAuth(this.baseUrl + endpoint, params);
   }
 
   getOrders(data: any){

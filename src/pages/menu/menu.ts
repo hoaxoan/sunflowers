@@ -87,6 +87,7 @@ export class MenuPage {
     this.pages = [
       { title: this.translate.instant("Menu.Dashboard"), component: 'DashboardPage', active: true, icon: 'apps' },
       { title: this.translate.instant("Menu.Order"), component: 'HomePage', active: false, icon: 'cart' },
+      { title: this.translate.instant("Menu.Product"), component: 'ProductPage', active: false, icon: 'flower' },
       { title: this.translate.instant("Menu.Map"), component: 'WorldMapPage', active: false, icon: 'map' },
       { title: this.translate.instant("Menu.Login"), component: 'LoginPage', active: false, icon: 'contact' },
     ];
