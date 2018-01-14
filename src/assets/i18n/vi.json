@@ -32,7 +32,9 @@
     "NoConnected": "Vui lòng kết nối mạng...",
     "Map": "Bản đồ",
     "MyLocation": "Vị trí hiện tại",
-    "ViewGoogleMaps": "Hiễn thị trên Google Maps"
+    "ViewGoogleMaps": "Hiễn thị trên Google Maps",
+    "DetailLabel": "Chi tiết",
+    "ReviewsLabel": "Bình luận"
   },
   "Menu": {
     "Dashboard": "Dashboard",

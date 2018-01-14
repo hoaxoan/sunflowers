@@ -95,6 +95,12 @@ export class DefApiProvider {
     return this.getWithAuth(this.baseUrl + endpoint, params);
   }
 
+  getProductById(id: any){
+    let endpoint = 'api/products/' + id;
+    let params = {};	
+    return this.getWithAuth(this.baseUrl + endpoint, params);
+  }
+
   getOrders(data: any){
     let endpoint = 'api/orders';
     let params = this.getParams(data);	

@@ -156,7 +156,7 @@
         <p>{{ 'Common.Quantity' | translate }}: {{ item.quantity | number }}</p>
         <p>{{ 'Common.Prices' | translate }}: {{ item.price_excl_tax | number }} VND</p>
         <p>{{ 'Common.Total' | translate }}: {{ item.product.price | number }} VND</p>
-        <button ion-button clear item-end>{{ 'Common.BtnView' | translate }}</button>
+        <button ion-button clear item-end (click)="viewProductDetail(item.product)">{{ 'Common.BtnView' | translate }}</button>
       </ion-item>
     </ion-list>
   </div>

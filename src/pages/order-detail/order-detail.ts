@@ -51,6 +51,10 @@ export class OrderDetailPage {
   viewOrderEdit(order) {
     this.navCtrl.push('OrderEditPage', order);
   }
+  
+  viewProductDetail(product) {
+    this.navCtrl.push('ProductDetailPage', product);
+  }
 
   loadAddress() {
     // Billing Address

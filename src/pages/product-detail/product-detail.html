@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{ product?.name }}</ion-title>
+    <ion-buttons end>
+      <button ion-button clear (click)="viewOrderEdit(product)">{{ 'Common.BtnEdit' | translate }}</button>
+    </ion-buttons>
+
+  </ion-navbar>
+
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="segment">
+      <ion-segment-button value="product">
+        {{ 'Common.ProductLabel' | translate }}
+      </ion-segment-button>
+      <ion-segment-button value="detail">
+        {{ 'Common.DetailLabel' | translate }}
+      </ion-segment-button>
+      <ion-segment-button value="reviews">
+        {{ 'Common.ReviewsLabel' | translate }}
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <div [ngSwitch]="segment">
+    <!-- Info -->
+    <ion-list *ngSwitchCase="'product'">
+      <ion-item>
+      </ion-item>
+    </ion-list>
+
+    <!-- details -->
+    <div *ngSwitchCase="'detail'">
+      
+    </div>
+
+    <!-- reviews -->
+    <ion-list *ngSwitchCase="'reviews'">
+    </ion-list>
+  </div>
+</ion-content>

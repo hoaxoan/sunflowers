@@ -66,12 +66,13 @@ export class ProductPage {
       }
 
       let multiProducts = _.chunk(this.products, this.products.length/2);
-      this.productLefts = multiProducts[0];
-      this.productRights = multiProducts[1];
+      if(multiProducts != null && multiProducts.length > 0){
+        this.productLefts = multiProducts[0];
+        if(multiProducts.length > 1){
+          this.productRights = multiProducts[1];
+        }
+      }
       
-      console.log(multiProducts);
-      console.log(this.productLefts);
-      console.log(this.productRights);
       this.loaded = true;
     },
     error => {
@@ -127,8 +128,12 @@ export class ProductPage {
       }
 
       let multiProducts = _.chunk(this.products, this.products.length/2);
-      this.productLefts = multiProducts[0];
-      this.productRights = multiProducts[1];
+      if(multiProducts != null && multiProducts.length > 0){
+        this.productLefts = multiProducts[0];
+        if(multiProducts.length > 1){
+          this.productRights = multiProducts[1];
+        }
+      }
 
       this.loaded = true;
 

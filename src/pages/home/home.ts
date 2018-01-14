@@ -74,6 +74,10 @@ export class HomePage {
     this.navCtrl.push('OrderDetailPage', order);
   }
 
+  viewProductDetail(product) {
+    this.navCtrl.push('ProductDetailPage', product);
+  }
+
   loadData(refresh) {
     let authToken = this.global.get('authToken');
     if (authToken != null) {

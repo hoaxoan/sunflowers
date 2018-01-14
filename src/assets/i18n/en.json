@@ -32,7 +32,9 @@
     "NoConnected": "Please connect to the Internet...",
     "Map": "Map",
     "MyLocation": "My Location",
-    "ViewGoogleMaps": "View on Google Maps"
+    "ViewGoogleMaps": "View on Google Maps",
+    "DetailLabel": "Details",
+    "ReviewsLabel": "Reviews"
   },
   "Menu": {
     "Dashboard": "Dashboard",
