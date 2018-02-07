@@ -38,7 +38,6 @@ export class ProductPage {
     public menu: MenuController) {
     menu.swipeEnable(true, 'menu');
     this.status = navParams.get('status');
-    console.log(this.status);
     this.params = {
       status: this.status,
       page: this.page

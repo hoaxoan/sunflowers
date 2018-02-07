@@ -5,7 +5,7 @@
     </button>
     <ion-title>{{ product?.name }}</ion-title>
     <ion-buttons end>
-      <button ion-button clear (click)="viewOrderEdit(product)">{{ 'Common.BtnEdit' | translate }}</button>
+      <button ion-button clear (click)="viewProductEdit(product)">{{ 'Common.BtnEdit' | translate }}</button>
     </ion-buttons>
 
   </ion-navbar>
@@ -43,19 +43,35 @@
         </ion-slides>
       </ion-item>
       <ion-item>
-        <h2>{{ product.short_description }}</h2>
+        <div [innerHTML]="product.short_description"></div>
       </ion-item>
     </ion-list>
 
     <!-- details -->
     <div *ngSwitchCase="'detail'">
-      <ion-item>
-        <h2>{{ product.full_description }}</h2>
+      <ion-item [innerHTML]="product.full_description" padding>
       </ion-item>
     </div>
 
     <!-- reviews -->
     <ion-list *ngSwitchCase="'reviews'">
+      <ion-list>
+
+        <ion-item>
+          <ion-label floating>{{ 'Review.Title' | translate }}</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>{{ 'Review.Description' | translate }}</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+
+      </ion-list>
+      <div padding>
+          <button ion-button color="primary_color" block>{{ 'Review.Send' | translate }}</button>
+      </div>
+
     </ion-list>
   </div>
 </ion-content>

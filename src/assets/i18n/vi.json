@@ -77,5 +77,10 @@
     "PendingDay": "ĐH Chưa Giao TN",
     "OrderInDay": "Tổng ĐH TN",
     "OrderNotShip": "Tổng ĐH Chưa Giao"
+  },
+  "Review":{
+    "Title": "Tiêu đề đánh giá",
+    "Description": "Mô tả đánh giá",
+    "Send": "Gửi Đánh Giá"
   }
 }

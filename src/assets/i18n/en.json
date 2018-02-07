@@ -77,5 +77,10 @@
     "PendingDay": "Pending Day",
     "OrderInDay": "Order In Day",
     "OrderNotShip": "Order Not Ship"
+  },
+  "Review":{
+    "Title": "Title",
+    "Description": "Description",
+    "Send": "Send"
   }
 }
