@@ -1,0 +1,55 @@
+<ion-header class="theme-light">
+  <ion-toolbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">{{ 'Common.BtnCancel' | translate }}</button>
+    </ion-buttons>
+
+    <ion-title>
+      {{ 'Order.FilterOrder' | translate }}
+    </ion-title>
+
+    <ion-buttons end>
+      <button ion-button (click)="applyFilters()" strong>{{ 'Common.BtnDone' | translate }}</button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content>
+  <ion-list>
+
+    <ion-item>
+      <ion-label>{{ 'Order.OrderStatus' | translate }}:</ion-label>
+      <ion-select [(ngModel)]="status_id" interface="action-sheet">
+        <ion-option *ngFor="let status of orderStatus" [value]="status.id">{{status.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+        <ion-label>{{ 'Order.PaymentStatus' | translate }}:</ion-label>
+        <ion-select [(ngModel)]="payment_id" interface="action-sheet">
+          <ion-option *ngFor="let status of paymentStatus" [value]="status.id">{{status.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+    <ion-item>
+      <ion-label>{{ 'Order.FromShippedDate' | translate }}:</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="from_date" ng-value=""></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>{{ 'Order.ToShippedDate' | translate }}:</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="to_date"></ion-datetime>
+    </ion-item>
+
+    
+  </ion-list>
+
+  <ion-list>
+    <button ion-item (click)="resetFilters()" detail-none class="reset-filters">
+      Reset All Filters
+    </button>
+  </ion-list>
+
+</ion-content>

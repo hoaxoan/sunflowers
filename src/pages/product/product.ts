@@ -6,7 +6,8 @@ import { AppState } from '../../app/app.global';
 import { Storage } from '@ionic/storage';
 import { CallNumber } from '@ionic-native/call-number';
 import { TranslateService } from '@ngx-translate/core';
-import { HomeFilterPage } from '../home-filter/home-filter';
+import { ProductFilterPage } from '../product-filter/product-filter';
+import { ProductSearchPage } from '../product-search/product-search';
 import * as _ from "lodash";
 
 @IonicPage()
@@ -158,7 +159,22 @@ export class ProductPage {
   }
 
   presentFilter() {
-    let modal = this.modalCtrl.create(HomeFilterPage, this.params);
+    let modal = this.modalCtrl.create(ProductFilterPage, this.params);
+    modal.present();
+
+    modal.onWillDismiss((data: any[]) => {
+      if (data) {
+        // update data
+        this.params = data;
+        this.params.status = null;
+        console.log(data);
+        this.getProducts(true);
+      }
+    });
+  }
+
+  presentSearch() {
+    let modal = this.modalCtrl.create(ProductSearchPage, this.params);
     modal.present();
 
     modal.onWillDismiss((data: any[]) => {
