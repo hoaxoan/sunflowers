@@ -5,7 +5,7 @@
     </ion-buttons>
 
     <ion-title>
-      {{ 'Order.FilterOrder' | translate }}
+      {{ 'Product.FilterProduct' | translate }}
     </ion-title>
 
     <ion-buttons end>
@@ -18,37 +18,36 @@
 
 <ion-content>
   <ion-list>
+    <ion-item>
+      <ion-label>{{ 'Product.SearchTerm' | translate }}:</ion-label>
+      <ion-input type="text" value=""></ion-input>
+    </ion-item>
 
     <ion-item>
-      <ion-label>{{ 'Order.OrderStatus' | translate }}:</ion-label>
-      <ion-select [(ngModel)]="status_id" interface="action-sheet">
-        <ion-option *ngFor="let status of orderStatus" [value]="status.id">{{status.name}}</ion-option>
+      <ion-label>{{ 'Product.Category' | translate }}:</ion-label>
+      <ion-select [(ngModel)]="category_id" interface="action-sheet">
+        <ion-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</ion-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
-        <ion-label>{{ 'Order.PaymentStatus' | translate }}:</ion-label>
-        <ion-select [(ngModel)]="payment_id" interface="action-sheet">
-          <ion-option *ngFor="let status of paymentStatus" [value]="status.id">{{status.name}}</ion-option>
+        <ion-label>{{ 'Product.Manufacturer' | translate }}:</ion-label>
+        <ion-select [(ngModel)]="manufacturer_id" interface="action-sheet">
+          <ion-option *ngFor="let manufacturer of manufacturers" [value]="manufacturer.id">{{manufacturer.name}}</ion-option>
         </ion-select>
       </ion-item>
 
     <ion-item>
-      <ion-label>{{ 'Order.FromShippedDate' | translate }}:</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="from_date" ng-value=""></ion-datetime>
+      <ion-label>{{ 'Product.PriceRange' | translate }}:</ion-label>
+      <ion-input type="number"></ion-input>
+      <ion-input type="number"></ion-input>
     </ion-item>
-
-    <ion-item>
-      <ion-label>{{ 'Order.ToShippedDate' | translate }}:</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="to_date"></ion-datetime>
-    </ion-item>
-
     
   </ion-list>
 
   <ion-list>
     <button ion-item (click)="resetFilters()" detail-none class="reset-filters">
-      Reset All Filters
+      {{ 'Common.ResetAllFilters' | translate }}
     </button>
   </ion-list>
 

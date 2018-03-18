@@ -12,11 +12,12 @@ import * as moment from 'moment'
   templateUrl: 'product-filter.html'
 })
 export class ProductFilterPage {
-  orderStatus = [];
-  paymentStatus = [];
+
+  categories = [];
+  manufacturers = [];
   params: any;
-  public status_id = null;
-  public payment_id = null;
+  public category_id = null;
+  public manufacturer_id = null;
   public from_date = moment();
   public to_date = moment();
 
@@ -29,34 +30,34 @@ export class ProductFilterPage {
   ) {
 
     this.params = this.navParams.data;
-    this.status_id = this.params.status_id;
-    this.payment_id = this.params.payment_id;
+    this.category_id = this.params.category_id;
+    this.manufacturer_id = this.params.manufacturer_id;
     this.from_date = this.params.from_date;
     this.to_date = this.params.to_date;
-    this.getOrderStatus();
-    this.getPaymentStatus();
+    this.getCategories();
+    this.getManufacturers();
   }
 
-  getOrderStatus() {
-    this.defApi.getOrderStatus().subscribe(response => {
-      if (response.orders_status != null && response.orders_status.length > 0) {
-        this.orderStatus = response.orders_status;
+  getCategories() {
+    this.defApi.getCategories(null).subscribe(response => {
+      if (response.categories != null && response.categories.length > 0) {
+        this.categories = response.categories;
       }
     });
   }
 
-  getPaymentStatus() {
-    this.defApi.getPaymentStatus().subscribe(response => {
-      if (response.payments_status != null && response.payments_status.length > 0) {
-        this.paymentStatus = response.payments_status;
+  getManufacturers() {
+    this.defApi.getManufacturers(null).subscribe(response => {
+      if (response.manufacturers != null && response.manufacturers.length > 0) {
+        this.manufacturers = response.manufacturers;
       }
     });
   }
 
   resetFilters() {
     // reset all
-    this.status_id = null;
-    this.payment_id = null;
+    this.category_id = null;
+    this.manufacturer_id = null;
     this.from_date = moment();
     this.to_date = moment();
   }
@@ -64,8 +65,8 @@ export class ProductFilterPage {
   applyFilters() {
     // apply filters
     let params = {
-      status_id: this.status_id,
-      payment_id: this.payment_id,
+      category_id: this.category_id,
+      manufacturer_id: this.manufacturer_id,
       from_date: this.from_date,
       to_date: this.to_date
     };

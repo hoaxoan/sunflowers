@@ -136,4 +136,17 @@ export class DefApiProvider {
     let endpoint = 'api/devices';
     return this.post(this.baseUrl + endpoint, device);
   }
+
+  getCategories(data: any){
+    let endpoint = 'api/categories';
+    let params = this.getParams(data);	
+    return this.getWithAuth(this.baseUrl + endpoint, params);
+  }
+
+  getManufacturers(data: any){
+    let endpoint = 'api/manufacturers';
+    let params = this.getParams(data);	
+    return this.getWithAuth(this.baseUrl + endpoint, params);
+  }
+
 }

@@ -35,7 +35,8 @@
     "MyLocation": "My Location",
     "ViewGoogleMaps": "View on Google Maps",
     "DetailLabel": "Details",
-    "ReviewsLabel": "Reviews"
+    "ReviewsLabel": "Reviews",
+    "ResetAllFilters": "Reset All Filters"
   },
   "Menu": {
     "Dashboard": "Dashboard",
@@ -65,10 +66,18 @@
     "FromShippedDate": "From Shipped Date",
     "ToShippedDate": "To Shipped Date",
     "FilterOrder": "Filter Order",
-    "OrderUpdated": "List order have been updated."
+    "OrderUpdated": "List orders have been updated."
   },
   "Product": {
-    "Product": "Product"
+    "Product": "Product",
+    "FilterProduct": "Filter Product",
+    "Category": "Category",
+    "Manufacturer": "Manufacturer",
+    "PriceRange": "Price range",
+    "SearchTerm": "Search term",
+    "FromPrice": "From price",
+    "ToPrice": "To price",
+    "ProductUpdated": "List products have been updated."
   },
   "Dashboard": {
     "Dashboard": "Dashboard",

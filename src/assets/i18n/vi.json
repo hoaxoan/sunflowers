@@ -35,7 +35,8 @@
     "MyLocation": "Vị trí hiện tại",
     "ViewGoogleMaps": "Hiễn thị trên Google Maps",
     "DetailLabel": "Chi tiết",
-    "ReviewsLabel": "Bình luận"
+    "ReviewsLabel": "Bình luận",
+    "ResetAllFilters": "Xóa bộ lọc"
   },
   "Menu": {
     "Dashboard": "Dashboard",
@@ -68,7 +69,15 @@
     "OrderUpdated": "Danh sách đơn hàng đã được tải."
   },
   "Product": {
-    "Product": "Sản phẩm"
+    "Product": "Sản phẩm",
+    "FilterProduct": "Lọc đơn hàng",
+    "Category": "Danh mục",
+    "Manufacturer": "Nhà cung cấp",
+    "PriceRange": "Giá bán hoa",
+    "SearchTerm": "Từ khóa",
+    "FromPrice": "Từ giá",
+    "ToPrice": "Đến giá",
+    "ProductUpdated": "Danh sách sản phẩm đã được tải."
   },
   "Dashboard": {
     "Dashboard": "Dashboard",

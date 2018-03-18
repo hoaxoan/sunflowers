@@ -1,7 +1,9 @@
 import { DefApiProvider } from '../../providers/api/def-api';
 import { Component } from '@angular/core';
-import { ModalController, IonicPage, Platform, ViewController, MenuController, NavController, NavParams, 
-  ToastController, Refresher } from 'ionic-angular';
+import {
+  ModalController, IonicPage, Platform, ViewController, MenuController, NavController, NavParams,
+  ToastController, Refresher
+} from 'ionic-angular';
 import { AppState } from '../../app/app.global';
 import { Storage } from '@ionic/storage';
 import { CallNumber } from '@ionic-native/call-number';
@@ -17,7 +19,8 @@ import * as _ from "lodash";
 })
 export class ProductPage {
 
-  status: any;
+  category_id: any;
+  manufacturer_id: any;
   products = [];
   productLefts = [];
   productRights = [];
@@ -35,18 +38,20 @@ export class ProductPage {
     public callNumber: CallNumber,
     public defApi: DefApiProvider,
     public toastCtrl: ToastController,
-    public translate : TranslateService,
+    public translate: TranslateService,
     public menu: MenuController) {
     menu.swipeEnable(true, 'menu');
-    this.status = navParams.get('status');
+    this.category_id = navParams.get('category_id');
+    this.manufacturer_id = navParams.get('manufacturer_id');
     this.params = {
-      status: this.status,
+      category_id: this.category_id,
+      manufacturer_id: this.manufacturer_id,
       page: this.page
     };
     this.loadData(true);
   }
 
-  getProducts(refresh) {
+  getProducts(refresh: any, refresher: Refresher) {
     if (refresh) {
       this.page = 1;
     }
@@ -65,20 +70,42 @@ export class ProductPage {
         this.canLoadMore = true;
       }
 
-      let multiProducts = _.chunk(this.products, this.products.length/2);
-      if(multiProducts != null && multiProducts.length > 0){
+      let multiProducts = _.chunk(this.products, this.products.length / 2);
+      if (multiProducts != null && multiProducts.length > 0) {
         this.productLefts = multiProducts[0];
-        if(multiProducts.length > 1){
+        if (multiProducts.length > 1) {
           this.productRights = multiProducts[1];
+        } else {
+          this.productRights = [];
         }
+      } else {
+        this.productLefts = [];
+        this.productRights = [];
       }
-      
+
       this.loaded = true;
+
+      if (refresher != null) {
+        // simulate a network request that would take longer
+        // than just pulling from out local json file
+        setTimeout(() => {
+          refresher.complete();
+
+          const toast = this.toastCtrl.create({
+            message: this.translate.instant("Product.ProductUpdated"),
+            duration: 3000
+          });
+          toast.present();
+        }, 1000);
+      }
     },
-    error => {
-      this.loaded = true;
-      this.canLoadMore = false;
-    });
+      error => {
+        this.loaded = true;
+        this.canLoadMore = false;
+        if (refresher != null) {
+          refresher.complete();
+        }
+      });
   }
 
   viewProductDetail(product) {
@@ -88,7 +115,7 @@ export class ProductPage {
   loadData(refresh) {
     let authToken = this.global.get('authToken');
     if (authToken != null) {
-      this.getProducts(refresh);
+      this.getProducts(refresh, null);
     } else {
       this.storage.get('accessToken').then(token => {
         if (token) {
@@ -97,7 +124,7 @@ export class ProductPage {
             let authToken = accessToken.AuthorizationModel.AccessToken;
             this.global.set('accessToken', token);
             this.global.set('authToken', authToken);
-            this.getProducts(refresh);
+            this.getProducts(refresh, null);
           } else {
             this.navCtrl.setRoot('LoginPage');
           }
@@ -111,7 +138,7 @@ export class ProductPage {
 
   loadMore(infiniteScroll) {
     setTimeout(() => {
-      this.getProducts(false);
+      this.getProducts(false, null);
       infiniteScroll.complete();
     }, 1000);
   }
@@ -119,56 +146,21 @@ export class ProductPage {
   doRefresh(refresher: Refresher) {
     this.params.page = 1;
 
-    this.defApi.getProducts(this.params).subscribe(response => {
-      this.products = response.products;
-
-      this.page++;
-      if (this.products != null && this.products.length > 0) {
-        this.canLoadMore = true;
-      }
-
-      let multiProducts = _.chunk(this.products, this.products.length/2);
-      if(multiProducts != null && multiProducts.length > 0){
-        this.productLefts = multiProducts[0];
-        if(multiProducts.length > 1){
-          this.productRights = multiProducts[1];
-        }
-      }
-
-      this.loaded = true;
-
-      // simulate a network request that would take longer
-      // than just pulling from out local json file
-      setTimeout(() => {
-        refresher.complete();
-
-        const toast = this.toastCtrl.create({
-          message: this.translate.instant("Order.OrderUpdated"),
-          duration: 3000
-        });
-        toast.present();
-      }, 1000);
-
-    },
-    error => {
-      this.loaded = true;
-      this.canLoadMore = false;
-      refresher.complete();
-    });
-    
+    this.getProducts(false, refresher);
   }
 
   presentFilter() {
     let modal = this.modalCtrl.create(ProductFilterPage, this.params);
     modal.present();
 
-    modal.onWillDismiss((data: any[]) => {
+    modal.onWillDismiss((data: any) => {
       if (data) {
         // update data
         this.params = data;
-        this.params.status = null;
+        this.params.category_id = data.category_id;
+        this.params.manufacturer_id = data.manufacturer_id;
         console.log(data);
-        this.getProducts(true);
+        this.getProducts(true, null);
       }
     });
   }
@@ -177,13 +169,14 @@ export class ProductPage {
     let modal = this.modalCtrl.create(ProductSearchPage, this.params);
     modal.present();
 
-    modal.onWillDismiss((data: any[]) => {
+    modal.onWillDismiss((data: any) => {
       if (data) {
         // update data
         this.params = data;
-        this.params.status = null;
+        this.params.category_id = data.category_id;
+        this.params.manufacturer_id = data.manufacturer_id;
         console.log(data);
-        this.getProducts(true);
+        this.getProducts(true, null);
       }
     });
   }
